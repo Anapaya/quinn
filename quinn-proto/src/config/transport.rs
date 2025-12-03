@@ -1,4 +1,4 @@
-use std::{fmt, sync::Arc};
+use std::{fmt, sync::Arc, u16::MIN};
 #[cfg(feature = "qlog")]
 use std::{io, sync::Mutex, time::Instant};
 
@@ -8,7 +8,7 @@ use qlog::streamer::QlogStreamer;
 #[cfg(feature = "qlog")]
 use crate::QlogStream;
 use crate::{
-    Duration, INITIAL_MTU, MAX_UDP_PAYLOAD, VarInt, VarIntBoundsExceeded, congestion,
+    Duration, INITIAL_MTU, MAX_UDP_PAYLOAD, MIN_MTU, VarInt, VarIntBoundsExceeded, congestion,
     connection::qlog::QlogSink,
 };
 
@@ -176,13 +176,13 @@ impl TransportConfig {
     /// The initial value to be used as the maximum UDP payload size before running MTU discovery
     /// (see [`TransportConfig::mtu_discovery_config`]).
     ///
-    /// Must be at least 1200, which is the default, and known to be safe for typical internet
+    /// Must be at least 1000. 1200 is the default and known to be safe for typical internet
     /// applications. Larger values are more efficient, but increase the risk of packet loss due to
     /// exceeding the network path's IP MTU. If the provided value is higher than what the network
     /// path actually supports, packet loss will eventually trigger black hole detection and bring
     /// it down to [`TransportConfig::min_mtu`].
     pub fn initial_mtu(&mut self, value: u16) -> &mut Self {
-        self.initial_mtu = value.max(INITIAL_MTU);
+        self.initial_mtu = value.max(MIN_MTU);
         self
     }
 
@@ -192,8 +192,7 @@ impl TransportConfig {
 
     /// The maximum UDP payload size guaranteed to be supported by the network.
     ///
-    /// Must be at least 1200, which is the default, and lower than or equal to
-    /// [`TransportConfig::initial_mtu`].
+    /// Must be at least 1000 which is the minimum. The default and the initial mtu is still 1200.
     ///
     /// Real-world MTUs can vary according to ISP, VPN, and properties of intermediate network links
     /// outside of either endpoint's control. Extreme care should be used when raising this value
@@ -204,7 +203,7 @@ impl TransportConfig {
     /// [`TransportConfig::mtu_discovery_config`] to set a maximum UDP payload size that robustly
     /// adapts to the network.
     pub fn min_mtu(&mut self, value: u16) -> &mut Self {
-        self.min_mtu = value.max(INITIAL_MTU);
+        self.min_mtu = value.max(MIN_MTU);
         self
     }
 

@@ -328,6 +328,9 @@ const LOC_CID_COUNT: u64 = 8;
 const RESET_TOKEN_SIZE: usize = 16;
 const MAX_CID_SIZE: usize = 20;
 const MIN_INITIAL_SIZE: u16 = 1200;
+/// XXX(uniquefine): This is a workaround for using QUIC over SCION
+/// or QUIC over QUIC.
+const MIN_MTU: u16 = 1000;
 /// <https://www.rfc-editor.org/rfc/rfc9000.html#name-datagram-size>
 const INITIAL_MTU: u16 = 1200;
 const MAX_UDP_PAYLOAD: u16 = 65527;
