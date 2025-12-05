@@ -27,6 +27,70 @@ dependencies = [
 ]
 
 [[package]]
+name = "anapaya-quinn"
+version = "0.11.9-ana.0"
+dependencies = [
+ "anapaya-quinn-proto",
+ "anyhow",
+ "async-io",
+ "async-std",
+ "bencher",
+ "bytes",
+ "cfg_aliases",
+ "clap",
+ "crc",
+ "directories-next",
+ "futures-io",
+ "pin-project-lite",
+ "quinn-udp",
+ "rand",
+ "rcgen",
+ "rustc-hash 2.1.1",
+ "rustls",
+ "rustls-pemfile",
+ "smol",
+ "socket2",
+ "thiserror 2.0.16",
+ "tokio",
+ "tracing",
+ "tracing-futures",
+ "tracing-subscriber",
+ "url",
+ "web-time",
+]
+
+[[package]]
+name = "anapaya-quinn-proto"
+version = "0.11.13-ana.0"
+dependencies = [
+ "arbitrary",
+ "assert_matches",
+ "aws-lc-rs",
+ "bytes",
+ "fastbloom",
+ "getrandom 0.3.3",
+ "hex-literal",
+ "lazy_static",
+ "lru-slab",
+ "qlog",
+ "rand",
+ "rand_pcg",
+ "rcgen",
+ "ring",
+ "rustc-hash 2.1.1",
+ "rustls",
+ "rustls-pki-types",
+ "rustls-platform-verifier",
+ "slab",
+ "thiserror 2.0.16",
+ "tinyvec",
+ "tracing",
+ "tracing-subscriber",
+ "wasm-bindgen-test",
+ "web-time",
+]
+
+[[package]]
 name = "anes"
 version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -349,11 +413,11 @@ checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
 name = "bench"
 version = "0.1.0"
 dependencies = [
+ "anapaya-quinn",
  "anyhow",
  "bytes",
  "clap",
  "hdrhistogram",
- "quinn",
  "rcgen",
  "rustls",
  "tokio",
@@ -413,9 +477,9 @@ dependencies = [
 name = "book"
 version = "0.1.0"
 dependencies = [
+ "anapaya-quinn",
  "anyhow",
  "bytes",
- "quinn",
  "rcgen",
  "rustls",
 ]
@@ -888,9 +952,9 @@ dependencies = [
 name = "fuzz"
 version = "0.1.0"
 dependencies = [
+ "anapaya-quinn-proto",
  "arbitrary",
  "libfuzzer-sys",
- "quinn-proto",
 ]
 
 [[package]]
@@ -1459,12 +1523,12 @@ checksum = "9b4f627cb1b25917193a259e49bdad08f671f8d9708acfd5fe0a8c1455d87220"
 name = "perf"
 version = "0.1.0"
 dependencies = [
+ "anapaya-quinn",
+ "anapaya-quinn-proto",
  "anyhow",
  "bytes",
  "clap",
  "hdrhistogram",
- "quinn",
- "quinn-proto",
  "rcgen",
  "rustls",
  "rustls-pemfile",
@@ -1586,70 +1650,6 @@ dependencies = [
  "serde_json",
  "serde_with",
  "smallvec",
-]
-
-[[package]]
-name = "quinn"
-version = "0.11.9"
-dependencies = [
- "anyhow",
- "async-io",
- "async-std",
- "bencher",
- "bytes",
- "cfg_aliases",
- "clap",
- "crc",
- "directories-next",
- "futures-io",
- "pin-project-lite",
- "quinn-proto",
- "quinn-udp",
- "rand",
- "rcgen",
- "rustc-hash 2.1.1",
- "rustls",
- "rustls-pemfile",
- "smol",
- "socket2",
- "thiserror 2.0.16",
- "tokio",
- "tracing",
- "tracing-futures",
- "tracing-subscriber",
- "url",
- "web-time",
-]
-
-[[package]]
-name = "quinn-proto"
-version = "0.11.13"
-dependencies = [
- "arbitrary",
- "assert_matches",
- "aws-lc-rs",
- "bytes",
- "fastbloom",
- "getrandom 0.3.3",
- "hex-literal",
- "lazy_static",
- "lru-slab",
- "qlog",
- "rand",
- "rand_pcg",
- "rcgen",
- "ring",
- "rustc-hash 2.1.1",
- "rustls",
- "rustls-pki-types",
- "rustls-platform-verifier",
- "slab",
- "thiserror 2.0.16",
- "tinyvec",
- "tracing",
- "tracing-subscriber",
- "wasm-bindgen-test",
- "web-time",
 ]
 
 [[package]]

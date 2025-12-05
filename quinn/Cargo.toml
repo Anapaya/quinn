@@ -1,9 +1,9 @@
 [package]
-name = "quinn"
-version = "0.11.9"
+name = "anapaya-quinn"
+version = "0.11.9-ana.0"
 license.workspace = true
 repository.workspace = true
-description = "Versatile QUIC transport protocol implementation"
+description = "Anapaya's fork of the versatile QUIC transport protocol implementation"
 readme = "../README.md"
 keywords.workspace = true
 categories.workspace = true
@@ -54,7 +54,7 @@ bytes = { workspace = true }
 futures-io = { workspace = true, optional = true }
 rustc-hash = { workspace = true }
 pin-project-lite = { workspace = true }
-proto = { package = "quinn-proto", path = "../quinn-proto", version = "0.11.12", default-features = false }
+proto = { package = "anapaya-quinn-proto", path = "../quinn-proto", version = "0.11.13-ana.0", default-features = false }
 rustls = { workspace = true, optional = true }
 smol = { workspace = true, optional = true }
 thiserror = { workspace = true }

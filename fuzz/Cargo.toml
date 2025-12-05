@@ -14,8 +14,8 @@ libfuzzer-sys = "0.4.2"
 
 [dependencies.proto]
 features = ["arbitrary"]
+package = "anapaya-quinn-proto"
 path = "../quinn-proto"
-package = "quinn-proto"
 
 [[bin]]
 name = "streams"
